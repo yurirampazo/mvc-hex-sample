@@ -11,6 +11,7 @@ public class Address {
 
   private Integer id;
   private String zipCode;
+  private String countryCode;
   private String streetName;
   private String neighbourhood;
   private String city;

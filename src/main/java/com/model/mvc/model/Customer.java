@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class Customer {
   private Integer id;
   private String name;
+  private String email;
   private Integer age;
   private LocalDate birthDate;
   private Address address;
