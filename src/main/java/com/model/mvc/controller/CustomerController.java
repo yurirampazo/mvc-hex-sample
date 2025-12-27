@@ -1,59 +1,53 @@
 package com.model.mvc.controller;
 
-import com.model.mvc.model.Address;
 import com.model.mvc.model.Customer;
+import com.model.mvc.service.CustomerService;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
 
-  private static final Customer mockedCustomer = Customer.builder()
-      .id(1)
-      .name("First Customer")
-      .age(LocalDate.now().getYear() - 1995)
-      .birthDate(LocalDate.of(1995, 12, 20))
-      .address(Address.builder()
-          .id(1)
-          .city("São Paulo")
-          .state("SP")
-          .zipCode("04144130")
-          .streetName("mocked street")
-          .neighbourhood("mocked neighbourhood")
-          .build())
-      .build();
+  private CustomerService customerService;
+
+  public CustomerController(CustomerService customerService) {
+    this.customerService = customerService;
+  }
 
   @GetMapping("/{id}")
-  private ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
-    return ResponseEntity.ok().body(mockedCustomer);
+  public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
+    return ResponseEntity.ok().body(customerService.getCustomerById(id));
   }
 
   @GetMapping
-  private ResponseEntity<List<Customer>> getCustomers() {
-    return ResponseEntity.ok().body(List.of(mockedCustomer));
+  public ResponseEntity<List<Customer>> getCustomers() {
+    return ResponseEntity.ok().body(customerService.getCustomers());
   }
 
   @PostMapping
   @Transactional
-  private ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(mockedCustomer);
+  public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomer(customer));
   }
 
-  @PutMapping
+  @PutMapping("/{id}")
   @Transactional
-  private ResponseEntity<Void> updateCustomer(@RequestBody Customer customer) {
+  public ResponseEntity<Void> updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
+    customerService.updateCustomer(id, customer);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
-  @DeleteMapping
+  @DeleteMapping("/{id}")
   @Transactional
-  private ResponseEntity<Void> deleteCustomer(@RequestBody Customer customer) {
+  public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
+    customerService.deleteCustomer(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 }
