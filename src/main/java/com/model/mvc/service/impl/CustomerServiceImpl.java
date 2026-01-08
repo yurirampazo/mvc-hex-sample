@@ -1,12 +1,13 @@
 package com.model.mvc.service.impl;
 
+import com.model.mvc.mapper.CustomerMapper;
 import com.model.mvc.model.Customer;
+import com.model.mvc.model.dto.CustomerResponseDTO;
 import com.model.mvc.repository.CustomerRepository;
 import com.model.mvc.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -16,9 +17,12 @@ public class CustomerServiceImpl implements CustomerService {
   @Autowired
   private CustomerRepository customerRepository;
 
+  @Autowired
+  private CustomerMapper customerMapper;
+
   @Override
-  public Customer getCustomerById(Integer id) {
-    return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatusCode.valueOf(404)));
+  public CustomerResponseDTO getCustomerById(Integer id) {
+    return customerMapper.toCustomerResponseDto(customerRepository.findById(id).orElseThrow(RuntimeException::new));
   }
 
   @Override

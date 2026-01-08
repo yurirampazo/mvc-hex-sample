@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -24,8 +25,8 @@ public class Customer {
   private String name;
   @NotNull
   private String email;
-  private Integer age;
   @NotNull
+  @DateTimeFormat(pattern = "dd-MM-yyyy")
   private LocalDate birthDate;
   @NotNull
   @Valid

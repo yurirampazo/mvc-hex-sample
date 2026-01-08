@@ -1,6 +1,7 @@
 package com.model.mvc.controller;
 
 import com.model.mvc.model.Customer;
+import com.model.mvc.model.dto.CustomerResponseDTO;
 import com.model.mvc.service.CustomerService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ public class CustomerController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
+  public ResponseEntity<CustomerResponseDTO> getCustomerById(@PathVariable Integer id) {
     return ResponseEntity.ok().body(customerService.getCustomerById(id));
   }
 
