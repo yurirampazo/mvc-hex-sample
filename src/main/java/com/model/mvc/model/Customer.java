@@ -30,7 +30,7 @@ public class Customer {
   private LocalDate birthDate;
   @NotNull
   @Valid
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(
     name = "customer_address",
     joinColumns = @JoinColumn(name = "customer_id"),
