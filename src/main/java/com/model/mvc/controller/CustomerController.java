@@ -1,6 +1,7 @@
 package com.model.mvc.controller;
 
 import com.model.mvc.model.Customer;
+import com.model.mvc.model.dto.CreateCustomerRequestDTO;
 import com.model.mvc.model.dto.CustomerResponseDTO;
 import com.model.mvc.service.CustomerService;
 import jakarta.transaction.Transactional;
@@ -35,7 +36,7 @@ public class CustomerController {
 
   @PostMapping
   @Transactional
-  public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer customer) {
+  public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody CreateCustomerRequestDTO customer) {
     return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomer(customer));
   }
 

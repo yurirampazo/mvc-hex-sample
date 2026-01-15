@@ -2,14 +2,17 @@ package com.model.mvc.service.impl;
 
 import com.model.mvc.mapper.CustomerMapper;
 import com.model.mvc.model.Customer;
+import com.model.mvc.model.dto.CreateCustomerRequestDTO;
 import com.model.mvc.model.dto.CustomerResponseDTO;
 import com.model.mvc.repository.CustomerRepository;
 import com.model.mvc.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -31,8 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   @Override
-  public Customer createCustomer(Customer customer) {
-    return customerRepository.save(customer);
+  public Customer createCustomer(CreateCustomerRequestDTO customer) {
+    if (Objects.isNull(customer)) {
+      throw new IllegalArgumentException("Unprocessable Entity");
+    }
+    var customerEntity = customerMapper.toCustomerCreatingResource(customer);
+    return customerRepository.save(customerEntity);
   }
 
   @Override

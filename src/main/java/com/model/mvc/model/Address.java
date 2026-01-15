@@ -30,5 +30,5 @@ public class Address {
   private String state;
 
   @ManyToMany(mappedBy = "addresses")
-  private Set<Customer> cutomers;
+  private Set<Customer> customers;
 }
