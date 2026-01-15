@@ -25,21 +25,24 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public CustomerResponseDTO getCustomerById(Integer id) {
-    return customerMapper.toCustomerResponseDto(customerRepository.findById(id).orElseThrow(RuntimeException::new));
+    return customerMapper.toCustomerResponseDto(customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found")));
   }
 
   @Override
-  public List<Customer> getCustomers() {
-    return customerRepository.findAll();
+  public List<CustomerResponseDTO> getCustomers() {
+    return customerRepository.findAll().stream()
+        .map(customer -> customerMapper.toCustomerResponseDto(customer))
+        .toList();
   }
 
   @Override
-  public Customer createCustomer(CreateCustomerRequestDTO customer) {
+  public CustomerResponseDTO createCustomer(CreateCustomerRequestDTO customer) {
     if (Objects.isNull(customer)) {
       throw new IllegalArgumentException("Unprocessable Entity");
     }
     var customerEntity = customerMapper.toCustomerCreatingResource(customer);
-    return customerRepository.save(customerEntity);
+    customerRepository.save(customerEntity);
+    return customerMapper.toCustomerResponseDto(customerEntity);
   }
 
   @Override

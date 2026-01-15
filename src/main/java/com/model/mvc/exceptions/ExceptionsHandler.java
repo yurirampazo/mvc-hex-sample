@@ -35,6 +35,20 @@ public class ExceptionsHandler {
     return ResponseEntity.badRequest().body(response);
   }
 
+  @ExceptionHandler(RuntimeException.class)
+  public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
+
+    ErrorResponse response = ErrorResponse.builder()
+        .timestamp(LocalDateTime.now())
+        .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+        .error("Internal server error")
+        .messages(Map.of("error", ex.getMessage()))
+        .build();
+
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+  }
+
+
   private String resolveMessage(FieldError error) {
     return error.getDefaultMessage();
   }

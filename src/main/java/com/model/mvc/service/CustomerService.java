@@ -9,8 +9,8 @@ import java.util.List;
 public interface CustomerService {
 
   CustomerResponseDTO getCustomerById(Integer id);
-  List<Customer> getCustomers();
-  Customer createCustomer(CreateCustomerRequestDTO customer);
+  List<CustomerResponseDTO> getCustomers();
+  CustomerResponseDTO createCustomer(CreateCustomerRequestDTO customer);
   void updateCustomer(Integer id, Customer customer);
   void deleteCustomer(Integer id);
 }

@@ -30,13 +30,13 @@ public class CustomerController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Customer>> getCustomers() {
+  public ResponseEntity<List<CustomerResponseDTO>> getCustomers() {
     return ResponseEntity.ok().body(customerService.getCustomers());
   }
 
   @PostMapping
   @Transactional
-  public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody CreateCustomerRequestDTO customer) {
+  public ResponseEntity<CustomerResponseDTO> registerCustomer(@Valid @RequestBody CreateCustomerRequestDTO customer) {
     return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomer(customer));
   }
 
