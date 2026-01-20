@@ -16,5 +16,5 @@ public class UpdateCustomerRequestDTO {
   private String name;
   private String email;
   private LocalDate birthDate;
-  private Set<CreateAddressRequestDTO> addresses;
+  private Set<UpdateAddressRequestDTO> addresses;
 }

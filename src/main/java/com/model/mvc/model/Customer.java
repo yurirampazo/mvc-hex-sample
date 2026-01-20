@@ -3,13 +3,16 @@ package com.model.mvc.model;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
-@Builder
 @Getter
 @Setter
 @Entity
@@ -30,11 +33,11 @@ public class Customer {
   private LocalDate birthDate;
   @NotNull
   @Valid
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany
   @JoinTable(
-    name = "customer_address",
-    joinColumns = @JoinColumn(name = "customer_id"),
-    inverseJoinColumns = @JoinColumn(name = "address_id")
+      name = "customer_address",
+      joinColumns = @JoinColumn(name = "customer_id"),
+      inverseJoinColumns = @JoinColumn(name = "address_id")
   )
-  private Set<Address> addresses;
+  private Set<Address> addresses = new HashSet<>();
 }

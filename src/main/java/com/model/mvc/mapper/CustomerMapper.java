@@ -2,19 +2,22 @@ package com.model.mvc.mapper;
 
 import com.model.mvc.model.Customer;
 import com.model.mvc.model.dto.CreateCustomerRequestDTO;
-import com.model.mvc.model.dto.CustomerResponseDTO;
 import com.model.mvc.model.dto.UpdateCustomerRequestDTO;
+import com.model.mvc.model.dto.CustomerResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring", uses = AddressMapper.class)
 public interface CustomerMapper {
 
-  CustomerResponseDTO toCustomerResponseDto(Customer customer);
+  CustomerResponseDTO toResponse(Customer customer);
 
   @Mapping(target = "id", ignore = true)
-  Customer toCustomerCreatingResource(CreateCustomerRequestDTO createCustomerRequestDTO);
+  @Mapping(target = "addresses", ignore = true)
+  Customer fromCreateDto(CreateCustomerRequestDTO dto);
 
   @Mapping(target = "id", ignore = true)
-  Customer toCustomerUpdatingResource(UpdateCustomerRequestDTO updateCustomerRequestDTO);
+  @Mapping(target = "addresses", ignore = true)
+  void updateFromDto(UpdateCustomerRequestDTO dto, @MappingTarget Customer customer);
 }

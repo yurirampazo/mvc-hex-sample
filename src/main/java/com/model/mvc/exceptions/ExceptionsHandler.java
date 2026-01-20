@@ -1,5 +1,6 @@
 package com.model.mvc.exceptions;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -48,6 +49,27 @@ public class ExceptionsHandler {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
   }
 
+  @ExceptionHandler(ConstraintViolationException.class)
+  public ResponseEntity<ErrorResponse> handleConstraintViolation(
+      ConstraintViolationException ex) {
+
+    Map<String, String> errors = new HashMap<>();
+
+    ex.getConstraintViolations().forEach(violation -> {
+      String field = violation.getPropertyPath().toString();
+      String message = violation.getMessage();
+      errors.put(field, message);
+    });
+
+    ErrorResponse response = ErrorResponse.builder()
+        .timestamp(LocalDateTime.now())
+        .status(HttpStatus.BAD_REQUEST.value())
+        .error("Validation error")
+        .messages(errors)
+        .build();
+
+    return ResponseEntity.badRequest().body(response);
+  }
 
   private String resolveMessage(FieldError error) {
     return error.getDefaultMessage();

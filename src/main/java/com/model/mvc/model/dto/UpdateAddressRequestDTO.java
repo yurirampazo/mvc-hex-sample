@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateAddressRequestDTO {
+  private Integer id;
   private String zipCode;
   private String countryCode;
   private String streetName;
