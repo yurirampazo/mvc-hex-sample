@@ -20,6 +20,23 @@ server:
     include-message: never
     include-binding-errors: never
 
+# Telemetry
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
+
 #---
 #spring:
 #  profile.active: local
