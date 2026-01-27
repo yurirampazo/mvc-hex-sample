@@ -15,6 +15,7 @@ spring:
 
 #  Spring Error Handling
 server:
+  port: '8080'
   error:
     include-stacktrace: never
     include-message: never

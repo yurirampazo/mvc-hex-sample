@@ -5,4 +5,5 @@ scrape_configs:
   - job_name: "spring-api"
     metrics_path: "/actuator/prometheus"
     static_configs:
-      - targets: ["api:8080"]
+      - targets:
+          - "spring-api:8080"
