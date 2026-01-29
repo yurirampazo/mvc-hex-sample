@@ -2,7 +2,7 @@ spring:
   application:
     name: mvc
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer_registry
+    url: jdbc:{POSTGRES_DB}
     username: ${DB_USERNAME:customer_user}
     password: ${DB_PASSWORD:supersecretpassword}
     driver-class-name: org.postgresql.Driver
