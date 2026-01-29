@@ -7,15 +7,20 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     jpa:
       hibernate:
-        ddl-auto: update # Options: none, update, create, create-drop, validate
+        ddl-auto: update  # ← MUDE DE 'none' PARA 'update'
       show-sql: true
       properties:
         hibernate:
           dialect: org.hibernate.dialect.MySQL8Dialect
+          format_sql: true
+logging:
+  level:
+    org.flywaydb: DEBUG
+
 
 #  Spring Error Handling
 server:
-  port: '8080'
+  port: 8080
   error:
     include-stacktrace: never
     include-message: never
