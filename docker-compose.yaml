@@ -25,10 +25,7 @@ services:
     container_name: spring-api
     restart: always
     environment:
-      # Para o container, constrói a URL completa
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_SSL: disable
+      DATABASE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
       DB_USERNAME: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       PORT: 8080
