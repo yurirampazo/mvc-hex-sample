@@ -67,3 +67,7 @@ replay_pid*
 # Docker secrets
 *.secret
 secrets/
+
+
+*/prometheus.yml
+*/prometheus/prometheus.yml
