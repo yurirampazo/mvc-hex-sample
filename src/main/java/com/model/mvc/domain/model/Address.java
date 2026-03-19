@@ -7,7 +7,7 @@ public class Address {
 
   private Integer id;
   private String zipCode;
-  private String countryCode;
+  private Integer countryCode;
   private String streetName;
   private String neighbourhood;
   private String city;
@@ -16,16 +16,23 @@ public class Address {
 
   public Address() {}
 
-  public Address(Integer id, String zipCode, String countryCode,
-                 String streetName, String neighbourhood,
-                 String city, String state) {
+  public Address(Integer id, Set<Customer> customers, String state, String city, String neighbourhood, String streetName, Integer countryCode, String zipCode) {
     this.id = id;
-    this.zipCode = zipCode;
-    this.countryCode = countryCode;
-    this.streetName = streetName;
-    this.neighbourhood = neighbourhood;
-    this.city = city;
+    this.customers = customers;
     this.state = state;
+    this.city = city;
+    this.neighbourhood = neighbourhood;
+    this.streetName = streetName;
+    this.countryCode = countryCode;
+    this.zipCode = zipCode;
+  }
+
+  public String getZipCode() {
+    return zipCode;
+  }
+
+  public void setZipCode(String zipCode) {
+    this.zipCode = zipCode;
   }
 
   public Integer getId() {
@@ -36,12 +43,20 @@ public class Address {
     this.id = id;
   }
 
-  public Set<Customer> getCustomers() {
-    return customers;
+  public String getStreetName() {
+    return streetName;
   }
 
-  public void setCustomers(Set<Customer> customers) {
-    this.customers = customers;
+  public void setStreetName(String streetName) {
+    this.streetName = streetName;
+  }
+
+  public Integer getCountryCode() {
+    return countryCode;
+  }
+
+  public void setCountryCode(Integer countryCode) {
+    this.countryCode = countryCode;
   }
 
   public String getState() {
@@ -68,27 +83,11 @@ public class Address {
     this.neighbourhood = neighbourhood;
   }
 
-  public String getCountryCode() {
-    return countryCode;
+  public Set<Customer> getCustomers() {
+    return customers;
   }
 
-  public void setCountryCode(String countryCode) {
-    this.countryCode = countryCode;
-  }
-
-  public String getStreetName() {
-    return streetName;
-  }
-
-  public void setStreetName(String streetName) {
-    this.streetName = streetName;
-  }
-
-  public String getZipCode() {
-    return zipCode;
-  }
-
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
+  public void setCustomers(Set<Customer> customers) {
+    this.customers = customers;
   }
 }

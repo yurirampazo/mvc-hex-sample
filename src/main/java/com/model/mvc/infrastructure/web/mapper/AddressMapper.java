@@ -27,6 +27,6 @@ public interface AddressMapper {
   @Mapping(target = "city", source = "city")
   @Mapping(target = "state", source = "stateName")
   @Mapping(target = "id", ignore = true)
-  @Mapping(target = "countryCode", ignore = true)
+  @Mapping(target = "number", ignore = true)
   AddressResponseDTO toAddressDto(ViaCepResponseDTO viaCep);
 }

@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 public class CreateAddressRequestDTO {
   @NotNull
   private String zipCode;
-  @NotNull
-  private String countryCode;
+  private Integer number;
   private String streetName;
   private String neighbourhood;
   @NotNull
