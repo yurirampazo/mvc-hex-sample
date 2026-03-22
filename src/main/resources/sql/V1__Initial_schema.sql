@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS customer(
 CREATE TABLE IF NOT EXISTS address(
     id INT AUTO_INCREMENT PRIMARY KEY,
     zip_code VARCHAR(12) NOT NULL,
-    country_code VARCHAR(2) NOT NULL,
+    address_number VARCHAR(10) DEFAULT 'S/N',
     street_name VARCHAR(255) NOT NULL,
     neighbourhood VARCHAR(255) NOT NULL,
     city VARCHAR(100) NOT NULL,

@@ -23,8 +23,8 @@ public class Address {
   private Integer id;
   @NotNull
   private String zipCode;
-  @NotNull
-  private Integer number;
+  @Column(name = "address_number")
+  private String number;
   private String streetName;
   private String neighbourhood;
   @NotNull

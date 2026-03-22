@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class UpdateAddressRequestDTO {
   private Integer id;
   private String zipCode;
-  private String countryCode;
+  private String number;
   private String streetName;
   private String neighbourhood;
   private String city;
