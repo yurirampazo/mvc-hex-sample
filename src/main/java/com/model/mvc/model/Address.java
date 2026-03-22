@@ -32,6 +32,6 @@ public class Address {
   @NotNull
   private String state;
 
-  @ManyToMany(mappedBy = "addresses")
+  @ManyToMany(mappedBy = "addresses", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )
   private Set<Customer> customers = new HashSet<>();
 }

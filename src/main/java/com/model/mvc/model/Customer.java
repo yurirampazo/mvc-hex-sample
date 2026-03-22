@@ -33,7 +33,7 @@ public class Customer {
   private LocalDate birthDate;
   @NotNull
   @Valid
-  @ManyToMany
+  @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinTable(
       name = "customer_address",
       joinColumns = @JoinColumn(name = "customer_id"),

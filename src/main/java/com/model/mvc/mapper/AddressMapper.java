@@ -12,7 +12,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
 
-  AddressResponseDTO toResponse(Address address);
+  AddressResponseDTO toResponse(Address address);  // ← SEM mapping aqui
 
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "customers", ignore = true)

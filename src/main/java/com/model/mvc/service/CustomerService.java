@@ -38,7 +38,7 @@ public class CustomerService {
   public List<CustomerResponseDTO> getAll() {
     return repository.findAll()
         .stream()
-        .map(mapper::toResponse)
+        .map(mapper::toResponseGetAll)
         .toList();
   }
 

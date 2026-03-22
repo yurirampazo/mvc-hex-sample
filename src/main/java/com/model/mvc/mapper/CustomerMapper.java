@@ -13,6 +13,9 @@ public interface CustomerMapper {
 
   CustomerResponseDTO toResponse(Customer customer);
 
+  @Mapping(target = "addresses", ignore = true)
+  CustomerResponseDTO toResponseGetAll(Customer customer);
+
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "addresses", ignore = true)
   Customer fromCreateDto(CreateCustomerRequestDTO dto);
