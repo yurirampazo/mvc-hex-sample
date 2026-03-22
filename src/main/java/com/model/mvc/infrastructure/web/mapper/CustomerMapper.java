@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = AddressMapper.class)
 public interface CustomerMapper {
 
   CustomerResponseDTO toResponse(Customer customer);
@@ -18,6 +18,5 @@ public interface CustomerMapper {
   Customer fromCreateDto(CreateCustomerRequestDTO dto);
 
   @Mapping(target = "id", ignore = true)
-  @Mapping(target = "addresses", ignore = true)
   void updateFromDto(UpdateCustomerRequestDTO dto, @MappingTarget Customer customer);
 }

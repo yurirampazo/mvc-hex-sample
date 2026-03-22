@@ -20,15 +20,15 @@ public class CustomerPersistenceAdapter implements CustomerRepositoryPort {
 
   @Override
   public Optional<Customer> findById(Integer id) {
-    return jpaRepository.findById(id)
-        .map(mapper::toDomain);
+    return jpaRepository.findByIdWithAddresses(id)
+        .map(mapper::toDomainGetById);
   }
 
   @Override
   public List<Customer> findAll() {
     return jpaRepository.findAll()
         .stream()
-        .map(mapper::toDomain)
+        .map(mapper::toDomainGetAll)
         .toList();
   }
 
@@ -36,7 +36,7 @@ public class CustomerPersistenceAdapter implements CustomerRepositoryPort {
   public Customer save(Customer customer) {
     CustomerEntity entity = mapper.toEntity(customer);
     CustomerEntity saved = jpaRepository.save(entity);
-    return mapper.toDomain(saved);
+    return mapper.toDomainGetById(saved);
   }
 
   @Override

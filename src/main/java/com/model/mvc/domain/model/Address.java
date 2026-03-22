@@ -7,7 +7,7 @@ public class Address {
 
   private Integer id;
   private String zipCode;
-  private Integer countryCode;
+  private String number;
   private String streetName;
   private String neighbourhood;
   private String city;
@@ -16,23 +16,15 @@ public class Address {
 
   public Address() {}
 
-  public Address(Integer id, Set<Customer> customers, String state, String city, String neighbourhood, String streetName, Integer countryCode, String zipCode) {
+  public Address(Integer id, String zipCode, String number, String streetName, String neighbourhood, String city, String state, Set<Customer> customers) {
     this.id = id;
-    this.customers = customers;
-    this.state = state;
-    this.city = city;
-    this.neighbourhood = neighbourhood;
+    this.zipCode = zipCode;
+    this.number = number;
     this.streetName = streetName;
-    this.countryCode = countryCode;
-    this.zipCode = zipCode;
-  }
-
-  public String getZipCode() {
-    return zipCode;
-  }
-
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
+    this.neighbourhood = neighbourhood;
+    this.city = city;
+    this.state = state;
+    this.customers = customers;
   }
 
   public Integer getId() {
@@ -43,6 +35,22 @@ public class Address {
     this.id = id;
   }
 
+  public String getZipCode() {
+    return zipCode;
+  }
+
+  public void setZipCode(String zipCode) {
+    this.zipCode = zipCode;
+  }
+
+  public String getNumber() {
+    return number;
+  }
+
+  public void setNumber(String number) {
+    this.number = number;
+  }
+
   public String getStreetName() {
     return streetName;
   }
@@ -51,20 +59,12 @@ public class Address {
     this.streetName = streetName;
   }
 
-  public Integer getCountryCode() {
-    return countryCode;
+  public String getNeighbourhood() {
+    return neighbourhood;
   }
 
-  public void setCountryCode(Integer countryCode) {
-    this.countryCode = countryCode;
-  }
-
-  public String getState() {
-    return state;
-  }
-
-  public void setState(String state) {
-    this.state = state;
+  public void setNeighbourhood(String neighbourhood) {
+    this.neighbourhood = neighbourhood;
   }
 
   public String getCity() {
@@ -75,12 +75,12 @@ public class Address {
     this.city = city;
   }
 
-  public String getNeighbourhood() {
-    return neighbourhood;
+  public String getState() {
+    return state;
   }
 
-  public void setNeighbourhood(String neighbourhood) {
-    this.neighbourhood = neighbourhood;
+  public void setState(String state) {
+    this.state = state;
   }
 
   public Set<Customer> getCustomers() {

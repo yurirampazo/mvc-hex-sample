@@ -9,8 +9,9 @@ import org.mapstruct.Mapping;
 public interface CustomerPersistenceMapper {
 
   @Mapping(target = "addresses", ignore = true)
-  Customer toDomain(CustomerEntity entity);
+  Customer toDomainGetAll(CustomerEntity entity);
 
-  @Mapping(target = "addresses", ignore = true)
+  Customer toDomainGetById(CustomerEntity entity);
+
   CustomerEntity toEntity(Customer domain);
 }

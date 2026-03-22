@@ -20,8 +20,8 @@ public class AddressEntity {
   private Integer id;
   @NotNull
   private String zipCode;
-  @NotNull
-  private Integer number;
+  @Column(name = "address_number")
+  private String number;
   private String streetName;
   private String neighbourhood;
   @NotNull
@@ -29,6 +29,6 @@ public class AddressEntity {
   @NotNull
   private String state;
 
-  @ManyToMany(mappedBy = "addresses")
+  @ManyToMany(mappedBy = "addresses", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   private Set<CustomerEntity> customers = new HashSet<>();
 }
