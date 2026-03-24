@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/address")
 @RequiredArgsConstructor
 public class AddressController {
-
   private final AddressUseCase addressUseCase;
 
   @GetMapping("/{zipCode}")
