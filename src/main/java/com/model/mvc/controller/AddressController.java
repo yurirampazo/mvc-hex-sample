@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/address")
 @RequiredArgsConstructor
-public class AddressConnector {
+public class AddressController {
 
   private final AddressService addressService;
 
