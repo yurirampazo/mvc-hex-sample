@@ -1,0 +1,22 @@
+package com.model.hex.infrastructure.web.dto;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AddressResponseDTO {
+  private Integer id;
+  private String zipCode;
+  private String number;
+  private String streetName;
+  private String neighbourhood;
+  private String city;
+  private String state;
+}
