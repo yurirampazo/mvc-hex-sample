@@ -25,40 +25,40 @@ The project follows the **Hexagonal Architecture** pattern, which organizes code
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    INFRASTRUCTURE LAYER                      │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  WEB (HTTP Adapters)  │  PERSISTENCE (DB Adapters)  │  │
-│  │  - Controllers        │  - Repositories             │  │
-│  │  - DTOs              │  - Entities                 │  │
-│  │  - Exception Handlers │  - Adapters                 │  │
-│  └──────────────────────────────────────────────────────┘  │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │         CLIENT (External Service Adapters)            │  │
-│  │         - ViaCEP Client                              │  │
-│  │         - HTTP Client Configuration                 │  │
-│  └──────────────────────────────────────────────────────┘  │
+│                    INFRASTRUCTURE LAYER                     │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  WEB (HTTP Adapters)  │  PERSISTENCE (DB Adapters)   │   │
+│  │  - Controllers        │  - Repositories              │   │
+│  │  - DTOs               │  - Entities                  │   │
+│  │  - Exception Handlers │  - Adapters                  │   │
+│  └──────────────────────────────────────────────────────┘   │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │         CLIENT (External Service Adapters)           │   │
+│  │         - ViaCEP Client                              │   │
+│  │         - HTTP Client Configuration                  │   │
+│  └──────────────────────────────────────────────────────┘   │
 └────────────┬─────────────────────────────────────┬──────────┘
              │                                     │
       PORTS (Interfaces)                   PORTS (Interfaces)
        (IN - Primary)                       (OUT - Secondary)
              │                                     │
 ┌────────────┴─────────────────────────────────────┴──────────┐
-│                  APPLICATION LAYER                           │
+│                  APPLICATION LAYER                          │
 │           ┌──────────────────────────────┐                  │
-│           │    Use Case Services        │                  │
-│           │ - CustomerService           │                  │
-│           │ - AddressService            │                  │
+│           │    Use Case Services        │                   │
+│           │ - CustomerService           │                   │
+│           │ - AddressService            │                   │
 │           └──────────────────────────────┘                  │
 └────────────┬─────────────────────────────────────┬──────────┘
              │                                     │
 ┌────────────┴─────────────────────────────────────┴──────────┐
-│                    DOMAIN LAYER                              │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │    Business Models & Logic                          │  │
-│  │    - Customer                                       │  │
-│  │    - Address                                        │  │
-│  │    - Port Interfaces                               │  │
-│  └──────────────────────────────────────────────────────┘  │
+│                    DOMAIN LAYER                             │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │    Business Models & Logic                           │   │
+│  │    - Customer                                        │   │
+│  │    - Address                                         │   │
+│  │    - Port Interfaces                                 │   │
+│  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -225,7 +225,7 @@ This method starts PostgreSQL and the application together with automatic config
 
 ```bash
 # Clone the repository (if needed)
-cd /home/yuri/Documents/tcc-usp/develop/mvc
+cd /yourProject
 
 # Create .env file with database credentials
 cat > .env << EOF
@@ -261,7 +261,7 @@ docker run --name postgres-dev \
   -d postgres:16-alpine
 
 # Navigate to project
-cd /home/yuri/Documents/tcc-usp/develop/mvc
+cd /yourProject
 
 # Create local configuration
 cat > src/main/resources/application-local.yml << EOF
@@ -301,7 +301,7 @@ For complete control over the environment:
 psql -U postgres -c "CREATE DATABASE customer_registry;"
 
 # 2. Navigate to project
-cd /home/yuri/Documents/tcc-usp/develop/mvc
+cd /yourProject
 
 # 3. Update application.yml with your database credentials
 nano src/main/resources/application.yml
