@@ -216,7 +216,7 @@ docker-compose --version
 **Complete one-command setup with PostgreSQL, app, and Prometheus:**
 
 ```bash
-cd /home/yuri/Documents/tcc-usp/develop/mvc
+cd /your_folder
 
 # Create .env file with credentials
 cat > .env << EOF
@@ -258,7 +258,7 @@ docker run --name postgres-dev \
   -d postgres:16-alpine
 
 # Navigate to project
-cd /home/yuri/Documents/tcc-usp/develop/mvc
+cd /yourProject
 
 # Build the project
 ./mvnw clean package -DskipTests
@@ -450,12 +450,8 @@ spring.jpa.hibernate.ddl-auto: create-drop
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/address` | List all addresses |
 | GET | `/address/{id}` | Get address by ID |
 | GET | `/address/search/{zipCode}` | Search by ZIP code |
-| POST | `/address` | Create new address |
-| PUT | `/address/{id}` | Update address |
-| DELETE | `/address/{id}` | Delete address |
 
 ### Management Endpoints
 
